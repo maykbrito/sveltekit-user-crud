@@ -3,8 +3,9 @@
 	import Button from './Button.svelte';
 
 	$: newUser = { fullname: '', email: '', avatar: '' };
+	$: isLoading = false;
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		// check fields ?
 		const isSomeFieldEmpty = Object.keys(newUser).some((field) => newUser[field] == '');
 
@@ -13,8 +14,10 @@
 			return;
 		}
 
-		addUser(newUser);
+		isLoading = true;
+		await addUser(newUser);
 
+		isLoading = false;
 		newUser = { fullname: '', email: '', avatar: '' };
 	};
 </script>
@@ -62,7 +65,7 @@
 						</div>
 					</div>
 					<div class="px-4 py-3 bg-blue-600 text-right sm:px-6">
-						<Button type="submit">Save</Button>
+						<Button disabled={isLoading} type="submit">Save</Button>
 					</div>
 				</div>
 			</form>

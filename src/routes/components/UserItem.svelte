@@ -3,7 +3,12 @@
 	import { deleteUser } from '../../store';
 	export let user;
 
-	const handleDelete = (userEmail) => deleteUser(userEmail);
+	$: isLoading = false;
+	const handleDelete = async (userEmail) => {
+		isLoading = true;
+		await deleteUser(userEmail);
+		isLoading = false;
+	};
 </script>
 
 <li class="py-4 flex justify-between">
@@ -15,6 +20,6 @@
 		</div>
 	</div>
 	<form on:submit|preventDefault={() => handleDelete(user.email)}>
-		<Button type="submit" style="delete">Delete</Button>
+		<Button disabled={isLoading} type="submit" style="delete">Delete</Button>
 	</form>
 </li>
