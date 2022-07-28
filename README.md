@@ -10,3 +10,6 @@ User Admin
 - Create an account, a project and `.env` file with credentials.
 
 - [Create `users` table like this image](./assets/supabase-users-table.png)
+
+- [Apply this RLS policy](./assets/
+)
