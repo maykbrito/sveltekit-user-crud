@@ -11,5 +11,4 @@ User Admin
 
 - [Create `users` table like this image](./assets/supabase-users-table.png)
 
-- [Apply this RLS policy](./assets/
-)
+- [Apply this RLS policy](./assets/RLS-policy.png)
