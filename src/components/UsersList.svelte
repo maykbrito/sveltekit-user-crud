@@ -1,6 +1,6 @@
 <script>
 	import UserItem from './UserItem.svelte';
-	import { Users, loadUsers } from '../../store';
+	import { Users, loadUsers } from '../stores/users.js';
 
 	loadUsers();
 </script>

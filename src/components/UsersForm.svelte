@@ -1,6 +1,8 @@
 <script>
-	import { addUser } from '../../store';
+	import { addUser } from '../stores/users.js';
+	import { user } from '../stores/auth.js';
 	import Button from './Button.svelte';
+	import Auth from './Auth.svelte';
 
 	$: newUser = { fullname: '', email: '', avatar: '' };
 	$: isLoading = false;
@@ -15,7 +17,7 @@
 		}
 
 		isLoading = true;
-		await addUser(newUser);
+		await addUser(newUser, $user.id);
 
 		isLoading = false;
 		newUser = { fullname: '', email: '', avatar: '' };
@@ -30,8 +32,7 @@
 					<div class="px-4 py-5 bg-blue-600 sm:p-6">
 						<div class="grid grid-cols-6 gap-6">
 							<div class="col-span-6 sm:col-span-3">
-								<label for="fullname" class="block text-sm font-medium text-white">First name</label
-								>
+								<label for="fullname" class="block text-sm font-medium text-white">Name</label>
 								<input
 									bind:value={newUser.fullname}
 									type="text"
